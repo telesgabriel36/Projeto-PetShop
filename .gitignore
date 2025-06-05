@@ -1,0 +1,30 @@
+# Build
+bin/
+obj/
+
+# User-specific files
+.vscode/
+*.user
+*.suo
+
+# Log
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# EF Core Migrations binaries
+Migrations/*.Designer.cs
+Migrations/*Snapshot.cs
+
+# Configuration
+appsettings.Development.json
+
+# VS
+*.dbmdl
+*.vsp
+*.pdb
+*.psess
+
+# Others
