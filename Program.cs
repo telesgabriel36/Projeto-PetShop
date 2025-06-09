@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Projeto_PetShop.Data;
+using Projeto_PetShop.Repositories.Interfaces;
+using Projeto_PetShop.Repositories.Implementations;
+using Projeto_PetShop.Service.Interface;
+using Projeto_PetShop.Service.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//Registrando os repositórios e serviços
+builder.Services.AddScoped<ITutorService, TutorService>();
+builder.Services.AddScoped<ITutorRepository, TutorRepository>();
+
+
 
 var app = builder.Build();
 

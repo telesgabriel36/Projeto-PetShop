@@ -1,0 +1,35 @@
+@model IEnumerable<Projeto_PetShop.Models.Tutor>
+@{
+    ViewData["Title"] = "Lista de Tutores";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista de Tutores</h1>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th>Endereço</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        @foreach (var tutor in Model)
+        {
+            <tr>
+                <td>@tutor.Nome</td>
+                <td>@tutor.Telefone</td>
+                <td>@tutor.Email</td>
+                <td>@tutor.Endereco</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@tutor.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@tutor.Id" class="btn btn-danger">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>

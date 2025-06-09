@@ -1,0 +1,33 @@
+@model Projeto_PetShop.Models.Tutor;
+
+@{
+    ViewData["Title"] = "Create Tutor";
+}
+
+<div class="text-center "> 
+    <h1 class="display-4">Cadastrar Tutor</h1>
+</div>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label for="Nome">Nome</label>
+        <input type="text" id="Nome" name="Nome" class="form-control" required />
+    </div>
+
+    <div>
+        <label for="Telefone">Telefone</label>
+        <input type="Telefone" id="Telefone" name="Telefone" class="form-control" required />
+    </div>
+
+    <div>
+        <label for="Email">Email</label>
+        <input type="email" id="Email" name="Email" class="form-control" required />
+    </div>
+
+    <div>
+        <label for="Endereco">Endereço</label>
+        <input type="text" id="Endereco" name="Endereco" class="form-control" required />
+    </div>
+        <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+
+</form>
