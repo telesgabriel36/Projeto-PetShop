@@ -1,21 +1,13 @@
-@model Projeto_PetShop.Models.Tutor;
-
+@model Projeto_PetShop.Models.Tutor
 @{
-    ViewData["Title"] = "Create Tutor";
+    ViewData["Title"] = "Editar Tutor";
 }
-
-<div class="text-center "> 
-    <h1 class="display-4">Cadastrar Tutor</h1>
+<div class="text-center">
+    <h1 class="display-4">Editar Tutor</h1>
 </div>
 
-@if (ViewBag.ErrorMessage != null)
-{
-    <div class="alert alert-danger text-center">
-        @ViewBag.ErrorMessage
-    </div>
-}
-
-<form asp-action="Create" method="post">
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id"/>
     <div>
         <label asp-for="Nome">Nome *</label>
         <input type="text" asp-for="Nome" class="form-control"/>
@@ -24,7 +16,7 @@
 
     <div>
         <label asp-for="Telefone">Telefone *</label>
-        <input type="Telefone" asp-for="Telefone" class="form-control"/>
+        <input type="Tel" asp-for="Telefone" class="form-control"/>
         <span asp-validation-for="Telefone" class="text-danger"></span>
     </div>
 
@@ -39,5 +31,5 @@
         <input type="text" asp-for="Endereco" class="form-control"/>
         <span asp-validation-for="Endereco" class="text-danger"></span>
     </div>
-        <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+        <button type="submit" class="btn btn-primary mt-3">Salvar Alteração</button>
 </form>

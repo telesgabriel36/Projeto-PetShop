@@ -23,13 +23,8 @@ public class TutorRepository : ITutorRepository
         return tutor;
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(Tutor tutor)
     {
-        var tutor = await _context.Tutores.FindAsync(id); // Primeiro busca a instância do tutor pelo ID
-        if (tutor == null)
-        {
-            return false; // Retorna falso se o tutor não for encontrado
-        }
         _context.Tutores.Remove(tutor);
         await _context.SaveChangesAsync();
         return true; // Retorna verdadeiro se a exclusão for bem-sucedida 
@@ -51,13 +46,17 @@ public class TutorRepository : ITutorRepository
     //Verificar a questão de salvar cada campo... Do jeito que está, ele atualiza todos os campos do tutor
     public async Task<Tutor> UpdateAsync(Tutor tutor)
     {
-        var tutorExiste = await _context.Tutores.AsNoTracking().FirstOrDefaultAsync(t => t.Id == tutor.Id);
+
+        var tutorExiste = await _context.Tutores.FirstOrDefaultAsync(t => t.Id == tutor.Id);
         if (tutorExiste == null)
         {
             return null; // Retorna nulo se o tutor não for encontrado
         }
-        _context.Tutores.Update(tutor);
+        tutorExiste.Nome = tutor.Nome;
+        tutorExiste.Telefone = tutor.Telefone;
+        tutorExiste.Email = tutor.Email;
+        tutorExiste.Endereco = tutor.Endereco;
         await _context.SaveChangesAsync();
-        return tutor;
+        return tutorExiste;
     }
 }

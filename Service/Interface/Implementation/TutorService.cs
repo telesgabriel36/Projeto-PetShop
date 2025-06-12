@@ -5,6 +5,7 @@ using Projeto_PetShop.Service.Interface;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Projeto_PetShop.Repositories.Interfaces;
+using Projeto_PetShop.Aplication.ServiceResult;
 
 public class TutorService : ITutorService
 {
@@ -15,14 +16,28 @@ public class TutorService : ITutorService
         _tutorRepository = tutorRepository;
     }
 
-    public async Task<Tutor> CreateAsync(Tutor tutor)
+    public async Task<ServiceResult<Tutor>> CreateAsync(Tutor tutor)
     {
         if (tutor == null)
         {
-            Console.WriteLine("ERROER(TUTORSERVICE): O tutor não pode ser nulo.");
-            return null;
+            return ServiceResult<Tutor>.Fail("Tutor não pode ser vázio. Preencha os dados requisitados.");
         }
-        return await _tutorRepository.CreateAsync(tutor);
+
+        var tutores = await _tutorRepository.GetAllAsync();
+        bool jaCadastrado = tutores.Any(t => t.Email == tutor.Email);
+
+        if (jaCadastrado)
+        {
+
+            return ServiceResult<Tutor>.Fail("E-mail já cadastrado no sistema.");
+        }
+
+        var cadastrado = await _tutorRepository.CreateAsync(tutor);
+        if (cadastrado == null)
+        {
+            return ServiceResult<Tutor>.Fail("Não foi possível cadastrar o usuário. Tente novamente.");
+        }
+        return ServiceResult<Tutor>.Ok(cadastrado, "Usuário cadastrado com Sucesso! testando");
     }
 
     public async Task<Tutor?> GetByIdAsync(int id)
@@ -40,32 +55,36 @@ public class TutorService : ITutorService
         return await _tutorRepository.GetAllAsync();
     }
 
-    public async Task<Tutor> UpdateAsync(Tutor tutor)
+    public async Task<ServiceResult<Tutor>> UpdateAsync(Tutor tutor)
     {
         if (tutor == null)
         {
-            Console.WriteLine("ERROR(TUTORSERVICE): O tutor não pode ser nulo.");
-            return null;
+
+            return ServiceResult<Tutor>.Fail("Tutor não pode ser vázio. Preencha os dados requisitados.");
         }
 
         var tutorExiste = await _tutorRepository.GetByIdAsync(tutor.Id);
+
         if (tutorExiste == null)
         {
-            Console.WriteLine($"ERROR(TUTORSERVICE): Tutor {tutor.Id} não encontrado para atualização.");
-            return null;
+            return ServiceResult<Tutor>.Fail("Tutor não encontrado. Tente novamente.");
         }
 
-        return await _tutorRepository.UpdateAsync(tutor);
+        var resposta = await _tutorRepository.UpdateAsync(tutor);
+        return ServiceResult<Tutor>.Ok(resposta, "Usuário atualizado com sucesso!");
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<ServiceResult<bool>> DeleteAsync(int id)
     {
-        var tutorExiste = await GetByIdAsync(id);
+
+        var tutorExiste = await _tutorRepository.GetByIdAsync(id);
+
         if (tutorExiste == null)
         {
-            Console.WriteLine($"ERROR(TUTORSERVICE): Tutor {id} não foi encontrado.");
-            return false;
+            return ServiceResult<bool>.Fail("Tutor não encontrado. Tente novamente.");
         }
-        return await _tutorRepository.DeleteAsync(id);
+
+        var resposta = await _tutorRepository.DeleteAsync(tutorExiste);
+        return ServiceResult<bool>.Ok(resposta, "Tutor Excluido com sucesso!");
     }
 }

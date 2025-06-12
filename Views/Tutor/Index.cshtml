@@ -7,6 +7,13 @@
     <h1 class="display-4">Lista de Tutores</h1>
 </div>
 
+@if(TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-center">
+        @TempData["MensagemSucesso"]
+    </div> 
+} 
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -29,6 +36,7 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@tutor.Id" class="btn btn-warning">Editar</a>
                     <a asp-action="Delete" asp-route-id="@tutor.Id" class="btn btn-danger">Excluir</a>
+                    <a asp-action="Details" asp-route-id="@tutor.Id" class="btn btn-info">Detalhes</a>
                 </td>
             </tr>
         }

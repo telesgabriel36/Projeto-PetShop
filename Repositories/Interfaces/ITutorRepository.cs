@@ -10,5 +10,5 @@ public interface ITutorRepository
     Task<Tutor?> GetByIdAsync(int id);
     Task<Tutor> CreateAsync(Tutor tutor);
     Task<Tutor> UpdateAsync(Tutor tutor);
-    Task<bool> DeleteAsync(int id);
+    Task<bool> DeleteAsync(Tutor tutor);
 }

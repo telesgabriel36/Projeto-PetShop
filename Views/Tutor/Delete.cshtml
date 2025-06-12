@@ -1,0 +1,43 @@
+@model Projeto_PetShop.Models.Tutor
+@{
+    ViewData["Title"] = "Deletar Tutor";
+}
+
+    <div class="text-center">
+        <h1 class="display-4">Deletar Tutor</h1>
+    </div>
+
+    @if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger text-center">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+    <div>
+        <h2 class="display-5 text-center">
+            Tem certeza que deseja excluir esse Tutor?
+        </h2>
+    </div>
+
+    <div class="text-center">
+        <p>
+            Após a exclusão todos os dados referentes a esse Tutor serão perdidos
+        </p>
+    </div>
+
+    @*Já funciona, apenas melhorar.*@
+    <form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id"/>
+    <div class="text-center">
+        <h2>@Model.Nome</h2>
+        <p><strong>Telefone:</strong> @Model.Telefone</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Endereço:</strong> @Model.Endereco</p>
+        <button class="btn btn-danger" type="submit">Deletar</button>
+        <a asp-action="Index" class="btn btn-info">Cancelar</a>
+    </div>
+    </form>
+
+    
+
