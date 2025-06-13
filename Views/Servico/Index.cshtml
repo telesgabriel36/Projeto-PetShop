@@ -1,0 +1,45 @@
+
+@model IEnumerable<Projeto_PetShop.Models.Servico>
+@{
+    ViewData["Title"] = "Lista de Serviços";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista de Serviços</h1>
+</div>
+
+@if(TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-center">
+        @TempData["MensagemSucesso"]
+    </div> 
+} 
+
+<div class="container mt-4">
+    <div class="table-responsive">
+        <table class="table table-striped text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var servico in Model)
+                {
+                    <tr>
+                        <td>@servico.Nome</td>
+                        <td>@servico.Valor.ToString("C")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@servico.Id" class="btn btn-warning btn-sm">Editar</a>
+                            <a asp-action="Delete" asp-route-id="@servico.Id" class="btn btn-danger btn-sm">Excluir</a>
+                            <a asp-action="Details" asp-route-id="@servico.Id" class="btn btn-info btn-sm">Detalhes</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

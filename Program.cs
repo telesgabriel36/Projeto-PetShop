@@ -12,10 +12,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//Registrando os repositórios e serviços
+//Registrando os repositórios e serviços de "Tutor"
 builder.Services.AddScoped<ITutorService, TutorService>();
 builder.Services.AddScoped<ITutorRepository, TutorRepository>();
 
+//Registrando os repositporios de serviços de "Serviço"
+builder.Services.AddScoped<IServicoService, ServicoService>();
+builder.Services.AddScoped<IServicoRepository, ServicoRepository>();
 
 
 var app = builder.Build();

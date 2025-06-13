@@ -1,0 +1,23 @@
+@model Projeto_PetShop.Models.Servico
+@{
+    ViewData["Title"] = "Detalhes do Serviço";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg rounded p-4">
+        <h2 class="text-center mb-4 text-primary">Detalhes do Serviço</h2>
+
+        <dl class="row">
+            <dt class="col-sm-3 text-end">Nome do Serviço:</dt>
+            <dd class="col-sm-9">@Model.Nome</dd>
+
+            <dt class="col-sm-3 text-end">Valor do Serviço:</dt>
+            <dd class="col-sm-9">@Model.Valor.ToString("C")</dd>
+        </dl>
+
+        <div class="text-primary mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-sm me-2">Editar</a>
+            <a asp-action="Index" class="btn btn-secondary btn-sm">Voltar</a>
+        </div>
+    </div>
+</div>

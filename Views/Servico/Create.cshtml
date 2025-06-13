@@ -1,0 +1,32 @@
+@model Projeto_PetShop.Models.Servico;
+
+@{
+    ViewData["Title"] = "Criar Serviço";
+}
+
+<div class="text-center "> 
+    <h1 class="display-4">Cadastrar Serviço</h1>
+</div>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger text-center">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<form asp-action="Create" method="post">
+    <div>
+        <label asp-for="Nome">Nome *</label>
+        <input type="text" asp-for="Nome" class="form-control"/>
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+
+
+    <div>
+        <label asp-for="Valor">Valor *</label>
+        <input type="text" asp-for="Valor" class="form-control"/>
+        <span asp-validation-for="Valor" class="text-danger"></span>
+    </div>
+        <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+</form>
