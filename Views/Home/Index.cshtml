@@ -1,8 +1,52 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Início";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-dark fw-bold">Sistema de Gestão PetShop</h1>
+        <p class="lead text-muted">Bem-vindo! Escolha uma das opções abaixo para começar.</p>
+    </div>
+
+    <div class="row justify-content-center g-4">
+        <div class="col-md-5 col-lg-3">
+            <div class="card shadow-lg border-0 rounded-3 h-100 text-center">
+                <div class="card-body py-4">
+                    <h5 class="card-title fw-semibold mb-2">🐾 Tutores</h5>
+                    <p class="card-text text-muted small mb-4">Gerencie os tutores cadastrados.</p>
+                    <a asp-controller="Tutor" asp-action="Index" class="btn btn-sm btn-outline-primary px-4">Acessar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-lg-3">
+            <div class="card shadow-lg border-0 rounded-3 h-100 text-center">
+                <div class="card-body py-4">
+                    <h5 class="card-title fw-semibold mb-2">🐶 Pets</h5>
+                    <p class="card-text text-muted small mb-4">Visualize, edite ou adicione pets.</p>
+                    <a asp-controller="Pet" asp-action="Index" class="btn btn-sm btn-outline-primary px-4">Acessar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-lg-3">
+            <div class="card shadow-lg border-0 rounded-3 h-100 text-center">
+                <div class="card-body py-4">
+                    <h5 class="card-title fw-semibold mb-2">🛠️ Serviços</h5>
+                    <p class="card-text text-muted small mb-4">Cadastre e edite serviços prestados.</p>
+                    <a asp-controller="Servico" asp-action="Index" class="btn btn-sm btn-outline-primary px-4">Acessar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-lg-3">
+            <div class="card shadow-lg border-0 rounded-3 h-100 text-center">
+                <div class="card-body py-4">
+                    <h5 class="card-title fw-semibold mb-2">📅 Agendamentos</h5>
+                    <p class="card-text text-muted small mb-4">Gerenciamento de agendamentos.</p>
+                    <a asp-controller="Agendamento" asp-action="Index" class="btn btn-sm btn-outline-primary px-4">Acessar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

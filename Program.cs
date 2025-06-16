@@ -20,6 +20,14 @@ builder.Services.AddScoped<ITutorRepository, TutorRepository>();
 builder.Services.AddScoped<IServicoService, ServicoService>();
 builder.Services.AddScoped<IServicoRepository, ServicoRepository>();
 
+//Registrando os repositorios e serviços de "Pet"
+builder.Services.AddScoped<IPetService, PetService>();
+builder.Services.AddScoped<IPetRepository, PetRepository>();
+
+//Registrando os repositorios e serviços de "Agendamento"
+builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
+builder.Services.AddScoped<IAgendamentoService, AgendamentoService>();
+
 
 var app = builder.Build();
 

@@ -1,0 +1,52 @@
+@model IEnumerable<Projeto_PetShop.Models.Agendamento>
+
+@{
+    ViewData["Title"] = "Lista de Agendamentos";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista de Agendamentos</h1>
+</div>
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-center">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded p-4">
+        <table class="table table-striped table-bordered text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Data do Agendamento</th>
+                    <th>Data do Atendimento</th>
+                    <th>Pet</th>
+                    <th>Serviço</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var agendamento in Model)
+                {
+                    <tr>
+                        <td>@agendamento.DataHoraAgendamento.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            @(agendamento.DataHoraAtendimento != DateTime.MinValue 
+                                ? agendamento.DataHoraAtendimento.ToString("dd/MM/yyyy HH:mm") 
+                                : "Ainda não atendido")
+                        </td>
+                        <td>@agendamento.Pet?.Nome</td>
+                        <td>@agendamento.Servico?.Nome</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@agendamento.Id" class="btn btn-warning btn-sm">Editar</a>
+                            <a asp-action="Delete" asp-route-id="@agendamento.Id" class="btn btn-danger btn-sm">Excluir</a>
+                            <a asp-action="Details" asp-route-id="@agendamento.Id" class="btn btn-info btn-sm">Detalhes</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

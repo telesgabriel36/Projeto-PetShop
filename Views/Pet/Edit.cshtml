@@ -1,0 +1,56 @@
+@model Projeto_PetShop.ViewModels.PetEditViewModel
+
+@{
+    ViewData["Title"] = "Edit Pet";
+}
+
+<div class="text-center "> 
+    <h1 class="display-4">Editar Pet</h1>
+</div>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger text-center">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Pet.Id" />
+<div class="card shadow-lg rounded p-4">    
+    <div>
+        <label asp-for="Pet.Nome">Nome *</label>
+        <input type="text" asp-for="Pet.Nome" class="form-control"/>
+        <span asp-validation-for="Pet.Nome" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Pet.Especie">Especie *</label>
+        <input type="text" asp-for="Pet.Especie" class="form-control"/>
+        <span asp-validation-for="Pet.Especie" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Pet.Raca">Raça *</label>
+        <input type="text" asp-for="Pet.Raca" class="form-control"/>
+        <span asp-validation-for="Pet.Raca" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Pet.DataNascimento">DataNascimento*</label>
+        <input type="date" asp-for="Pet.DataNascimento" class="form-control"/>
+        <span asp-validation-for="Pet.DataNascimento" class="text-danger"></span>
+    </div>
+   
+   <label>Tutor</label>
+    <select asp-for="Pet.TutorId" asp-items="@(new SelectList(Model.Tutores, "Id", "Nome", Model.Pet.TutorId))" class="form-select">
+        <option value="">Selecione o Tutor</option>
+</select>
+
+</div> 
+
+<span asp-validation-for="Pet.TutorId" class="text-danger"></span>
+
+
+     <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+</form>

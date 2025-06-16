@@ -1,0 +1,62 @@
+@model Projeto_PetShop.ViewModels.AgendamentoCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Agendamento";
+}
+
+<div class="text-center"> 
+    <h1 class="display-4">Agendar</h1>
+</div>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger text-center">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<form asp-action="Create" method="post">
+    <div class="container mt-5">
+        <div class="card shadow-lg rounded p-4">
+
+            <div class="mb-3">
+                <label asp-for="Agendamento.DataHoraAgendamento" class="form-label">Data do Agendamento</label>
+                <input type="hidden" asp-for="Agendamento.DataHoraAgendamento" class="form-control" />
+                <span asp-validation-for="Agendamento.DataHoraAgendamento" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Agendamento.DataHoraAtendimento" class="form-label"></label>
+                <input type="datetime-local" asp-for="Agendamento.DataHoraAtendimento" class="form-control" />
+                <span asp-validation-for="Agendamento.DataHoraAtendimento" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Agendamento.PetId" class="form-label"> Pet</label>
+                <select asp-for="Agendamento.PetId" class="form-control">
+                    <option value="">Selecione o Pet</option>
+                    @foreach (var pet in Model.Pets)
+                    {
+                        <option value="@pet.Id">@pet.Nome (@pet.Tutor.Nome)</option>
+                    }
+                </select>
+                <span asp-validation-for="Agendamento.PetId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Agendamento.ServicoId" class="form-label">Serviço</label>
+                <select asp-for="Agendamento.ServicoId" class="form-control">
+                    <option value="">Selecione o Serviço</option>
+                    @foreach (var servico in Model.Servicos)
+                    {
+                        <option value="@servico.Id">@servico.Nome</option>
+                    }
+                </select>
+                <span asp-validation-for="Agendamento.ServicoId" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+
+        </div>
+    </div>
+</form>

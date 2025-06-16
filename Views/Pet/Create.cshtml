@@ -1,0 +1,53 @@
+@model Projeto_PetShop.ViewModels.CreateViewModel;
+
+@{
+    ViewData["Title"] = "Create Pet";
+}
+
+<div class="text-center "> 
+    <h1 class="display-4">Cadastrar Pet</h1>
+</div>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger text-center">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<form asp-action="Create" method="post">
+    <div>
+        <label asp-for="Pet.Nome">Nome *</label>
+        <input type="text" asp-for="Pet.Nome" class="form-control"/>
+        <span asp-validation-for="Pet.Nome" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Pet.Especie">Especie *</label>
+        <input type="text" asp-for="Pet.Especie" class="form-control"/>
+        <span asp-validation-for="Pet.Especie" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Pet.Raca">Raça *</label>
+        <input type="text" asp-for="Pet.Raca" class="form-control"/>
+        <span asp-validation-for="Pet.Raca" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Pet.DataNascimento">DataNascimento*</label>
+        <input type="date" asp-for="Pet.DataNascimento" class="form-control"/>
+        <span asp-validation-for="Pet.DataNascimento" class="text-danger"></span>
+    </div>
+
+    
+    <select asp-for="Pet.TutorId">
+        <option value="">Selecione o Tutor</option>
+        @foreach (var tutor in Model.Tutores)
+        {
+            <option value="@tutor.Id">@tutor.Nome</option>
+        }
+    </select>
+
+     <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+</form>

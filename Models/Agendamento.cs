@@ -6,9 +6,10 @@ public class Agendamento
     public DateTime DataHoraAgendamento { get; set; }
     public DateTime DataHoraAtendimento { get; set; }
 
-    public int IdPet { get; set; } // Chave estrangeira do Pet.
-    public Pet Pet { get; set; } = null!;// Navegação para acessar os dados do Pet.
+    public int PetId { get; set; } // Chave estrangeira do Pet.
+    public Pet? Pet { get; set; } // Navegação para acessar os dados do Pet.
 
-    public List<AgendamentoServico> AgendamentoServicos { get; set; } = new(); // Lista de serviços associados ao agendamento.
+    public int ServicoId { get; set; } // Chave estrangeira de Serviço
+    public Servico? Servico { get; set; } //Navegação de Serviço
 
 }

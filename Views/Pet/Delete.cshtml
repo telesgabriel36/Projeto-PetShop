@@ -1,0 +1,39 @@
+@model Projeto_PetShop.Models.Pet
+@{
+    ViewData["Title"] = "Deletar Pet";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded p-4 mx-auto" style="max-width: 600px;">
+        <h2 class="text-center text-danger mb-4">Deletar Tutor</h2>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger text-center">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
+        <div class="text-center mb-4">
+            <h5>Tem certeza que deseja excluir este tutor?</h5>
+            <p class="text-muted">Após a exclusão, todos os dados associados a este tutor serão perdidos.</p>
+        </div>
+
+        <div class="border rounded p-3 bg-light">
+             <p><strong>🐾 Nome do Pet:</strong> @Model.Nome</p>
+             <p><strong>🦴 Espécie:</strong> @Model.Especie</p>
+            <p><strong>🐕 Raça:</strong> @Model.Raca</p>
+            <p><strong>👨‍👩‍👧 Tutor:</strong> @Model.Tutor.Nome</p>
+        </div>
+
+        <form asp-action="Delete" method="post" class="text-center mt-4">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger me-2">Confirmar Exclusão</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+
+    
+

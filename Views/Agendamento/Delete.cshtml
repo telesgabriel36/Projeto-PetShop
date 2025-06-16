@@ -1,0 +1,35 @@
+@model Projeto_PetShop.Models.Agendamento
+@{
+    ViewData["Title"] = "Deletar Agendamento";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded p-4 mx-auto" style="max-width: 600px;">
+        <h2 class="text-center text-danger mb-4">Deletar Agendamento</h2>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger text-center">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
+        <div class="text-center mb-4">
+            <h5>Tem certeza que deseja excluir este agendamento?</h5>
+            <p class="text-muted">Após a exclusão, as informações não poderão ser recuperadas.</p>
+        </div>
+
+        <div class="border rounded p-3 bg-light">
+            <p><strong>📅 Data do Agendamento:</strong> @Model.DataHoraAgendamento.ToString("dd/MM/yyyy")</p>
+            <p><strong>🕒 Atendimento Realizado:</strong> @(Model.DataHoraAtendimento.ToString("dd/MM/yyyy HH:mm") ?? "Ainda não realizado")</p>
+            <p><strong>🐾 Pet:</strong> @Model.Pet?.Nome</p>
+            <p><strong>💼 Serviço:</strong> @Model.Servico?.Nome</p>
+        </div>
+
+        <form asp-action="Delete" method="post" class="text-center mt-4">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger me-2">Confirmar Exclusão</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

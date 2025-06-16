@@ -30,7 +30,7 @@ public class TutorController : Controller
         return View();
     }
 
-    [HttpPost] //Método para enviar os dado do novo tutor ao serviço
+    [HttpPost] //Método para enviar os dado do novo tutor a service
     public async Task<IActionResult> Create(Tutor tutor)
     {
         if (ModelState.IsValid)

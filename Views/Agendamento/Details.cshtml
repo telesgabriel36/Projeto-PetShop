@@ -1,0 +1,38 @@
+@model Projeto_PetShop.Models.Agendamento
+
+@{
+    ViewData["Title"] = "Detalhes do Agendamento";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg rounded p-4">
+        <h2 class="text-center mb-4 text-primary">Detalhes do Agendamento</h2>
+
+        <dl class="row">
+            <dt class="col-sm-3 text-end">Data do Agendamento:</dt>
+            <dd class="col-sm-9">@Model.DataHoraAgendamento.ToString("dd/MM/yyyy HH:mm")</dd>
+
+            <dt class="col-sm-3 text-end">Data do Atendimento:</dt>
+            <dd class="col-sm-9">
+                @(Model.DataHoraAtendimento != DateTime.MinValue 
+                    ? Model.DataHoraAtendimento.ToString("dd/MM/yyyy HH:mm") 
+                    : "Ainda não realizado")
+            </dd>
+
+            <dt class="col-sm-3 text-end">Pet:</dt>
+            <dd class="col-sm-9">
+                <a asp-controller="Pet" asp-action="Details" asp-route-id="@Model.PetId">
+                    @Model.Pet?.Nome
+                </a>
+            </dd>
+
+            <dt class="col-sm-3 text-end">Serviço:</dt>
+            <dd class="col-sm-9">@Model.Servico?.Nome</dd>
+        </dl>
+
+        <div class="text-primary mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-sm me-2">Editar</a>
+            <a asp-action="Index" class="btn btn-secondary btn-sm">Voltar</a>
+        </div>
+    </div>
+</div>
