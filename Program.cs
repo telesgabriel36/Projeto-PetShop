@@ -28,6 +28,9 @@ builder.Services.AddScoped<IPetRepository, PetRepository>();
 builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
 builder.Services.AddScoped<IAgendamentoService, AgendamentoService>();
 
+//Registrando os repositórios e serviços de "Pagamento"
+builder.Services.AddScoped<IPagamentoService, PagamentoService>();
+builder.Services.AddScoped<IPagamentoRepository, PagamentoRepository>();
 
 var app = builder.Build();
 

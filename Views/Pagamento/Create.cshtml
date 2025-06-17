@@ -1,0 +1,79 @@
+@model Projeto_PetShop.ViewModels.PagamentoCreateViewModel
+
+@{
+    ViewData["Title"] = "Criar Pagamento";
+}
+
+<div class="text-center"> 
+    <h1 class="display-4">Registrar Pagamento</h1>
+</div>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger text-center">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<form asp-action="Create" method="post">
+    <div class="container mt-5">
+        <div class="card shadow-lg rounded p-4">
+
+            <div class="mb-3">
+                <label class="form-label">Pet</label>
+                <input type="text" class="form-control" value="@Model.Agendamento.Pet?.Nome" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Serviço</label>
+                <input type="text" class="form-control" value="@Model.Agendamento.Servico?.Nome" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Data do Agendamento</label>
+                <input type="text" class="form-control" value="@Model.Agendamento.DataHoraAgendamento.ToString("dd/MM/yyyy HH:mm")" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Data do Atendimento</label>
+                <input type="text" class="form-control" 
+                       value="@(Model.Agendamento.DataHoraAtendimento != DateTime.MinValue 
+                                ? Model.Agendamento.DataHoraAtendimento.ToString("dd/MM/yyyy HH:mm") 
+                                : "Ainda não atendido")" readonly />
+            </div>
+
+            
+            <div class="mb-3">
+                <label class="form-label">Valor</label>
+                <input type="text" class="form-control" value="@Model.Agendamento.Servico?.Valor.ToString("C2")" readonly />
+                <input type="hidden" asp-for="Pagamento.Valor" value="@Model.Agendamento.Servico?.Valor" />
+            </div>
+
+            
+            <div class="mb-3">
+                <label asp-for="Pagamento.MetodoPagamento" class="form-label">Forma de Pagamento</label>
+                <select asp-for="Pagamento.MetodoPagamento" class="form-control">
+                    <option value="">Selecione</option>
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="CartaoCredito">Cartão de Crédito</option>
+                    <option value="CartaoDebito">Cartão de Débito</option>
+                    <option value="Pix">Pix</option>
+                </select>
+                <span asp-validation-for="Pagamento.MetodoPagamento" class="text-danger"></span>
+            </div>
+
+        
+            <div class="mb-3">
+                <label asp-for="Pagamento.DataPagamento" class="form-label">Data do Pagamento</label>
+                <input type="datetime-local" asp-for="Pagamento.DataPagamento" class="form-control" />
+                <span asp-validation-for="Pagamento.DataPagamento" class="text-danger"></span>
+            </div>
+
+            <!-- Campo AgendamentoId -->
+            <input type="hidden" asp-for="Pagamento.AgendamentoId" />
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+
+        </div>
+    </div>
+</form>

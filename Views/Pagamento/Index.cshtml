@@ -1,0 +1,52 @@
+@model IEnumerable<Projeto_PetShop.Models.Pagamento>
+
+@{
+    ViewData["Title"] = "Lista de Pagamentos";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Pagamentos Realizados</h1>
+</div>
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-center">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded p-4">
+
+        <table class="table table-striped table-bordered text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Data do Pagamento</th>
+                    <th>Valor</th>
+                    <th>Forma de Pagamento</th>
+                    <th>Pet</th>
+                    <th>Serviço</th>
+                    <th>Status do Agendamento</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pagamento in Model)
+                {
+                    <tr>
+                        <td>@pagamento.DataPagamento.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>R$ @pagamento.Valor.ToString("F2")</td>
+                        <td>@pagamento.MetodoPagamento</td>
+                        <td>@pagamento.Agendamento?.Pet?.Nome</td>
+                        <td>@pagamento.Agendamento?.Servico?.Nome</td>
+                        <td>@pagamento.Agendamento?.status</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@pagamento.Id" class="btn btn-info btn-sm">Detalhes</a>
+                            <a asp-action="Delete" asp-route-id="@pagamento.Id" class="btn btn-danger btn-sm">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

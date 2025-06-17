@@ -1,5 +1,6 @@
 namespace Projeto_PetShop.Models;
 
+using Projeto_PetShop.Aplication.ServiceResult;
 using Projeto_PetShop.Enums.Agendamento;
 using System.ComponentModel.DataAnnotations;
 
@@ -21,4 +22,8 @@ public class Agendamento
     [Required(ErrorMessage = "O status do agendamento é obrigatório.")]
     public StatusAgendamento status { get; set; }
 
+    public static implicit operator Agendamento(ServiceResult<Agendamento?> v)
+    {
+        throw new NotImplementedException();
+    }
 }
