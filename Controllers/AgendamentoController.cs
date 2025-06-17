@@ -49,16 +49,10 @@ public class AgendamentoController : Controller
     {
         var novoAgendamento = model.Agendamento;
         novoAgendamento.DataHoraAgendamento = DateTime.Now;
+        novoAgendamento.status = Enums.Agendamento.StatusAgendamento.Agendado;
 
         if (!ModelState.IsValid)
         {
-            foreach (var erro in ModelState)
-            {
-                if (erro.Value.Errors.Count > 0)
-                {
-                    Console.WriteLine($"{erro.Key} -> {erro.Value.Errors[0].ErrorMessage}");
-                }
-            }
             model.Pets = (await _petService.GetAllAsync()).ToList();
             model.Servicos = (await _servicoService.GetAllAsync()).ToList();
             return View(model);

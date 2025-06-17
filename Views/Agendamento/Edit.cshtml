@@ -48,7 +48,19 @@
         <span asp-validation-for="Agendamento.ServicoId" class="text-danger"></span>
     </div>
 
+    <div>
+        <label asp-for="Agendamento.status">Status do Agendamento *</label>
+        <select asp-for="Agendamento.status" class="form-select"
+                asp-items="Html.GetEnumSelectList<Projeto_PetShop.Enums.Agendamento.StatusAgendamento>()">
+            <option value="">Selecione o Status</option>
+        </select>
+        <span asp-validation-for="Agendamento.status" class="text-danger"></span>
+    </div>
+
+
+
     <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
 </form>
 
 </div>

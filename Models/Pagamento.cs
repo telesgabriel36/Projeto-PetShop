@@ -6,6 +6,7 @@ public class Pagamento
     public decimal Valor { get; set; }
     public DateTime DataPagamento { get; set; }
     public string MetodoPagamento { get; set; } = string.Empty; // Método de pagamento utilizado (ex: Cartão, Dinheiro, Pix).
-    public int IdAgendamento { get; set; } // Chave estrangeira do Agendamento.
+    
+    public int AgendamentoId { get; set; } // Chave estrangeira do Agendamento.
     public Agendamento Agendamento { get; set; } = new(); // Navegação para acessar os dados do Agendamento.
 }

@@ -22,6 +22,18 @@ public class AgendamentoService : IAgendamentoService
         if (agendamento == null)
             return ServiceResult<Agendamento>.Fail("Agendamento não pode ser nulo.");
 
+        if (agendamento.DataHoraAtendimento <= agendamento.DataHoraAgendamento)
+        {
+            return ServiceResult<Agendamento>.Fail($"A data e hora de agendamento deve ser maior que a data e hora atual: {agendamento.DataHoraAgendamento} ");
+        }
+
+        var agendamentos = await _agendamentoRepository.GetAllAsync();
+
+        if (agendamentos.Any(agd => agd.DataHoraAtendimento == agendamento.DataHoraAtendimento))
+        {
+            return ServiceResult<Agendamento>.Fail($"Data e horário ({agendamento.DataHoraAtendimento}) não disponíveis. Tente uma nova data e horário.");
+        }
+
         var criado = await _agendamentoRepository.CreateAsync(agendamento);
 
         if (criado == null)

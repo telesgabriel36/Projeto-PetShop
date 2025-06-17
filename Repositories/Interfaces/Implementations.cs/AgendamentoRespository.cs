@@ -56,6 +56,7 @@ public class AgendamentoRepository : IAgendamentoRepository
         agendamentoExiste.DataHoraAtendimento = agendamento.DataHoraAtendimento;
         agendamentoExiste.ServicoId = agendamento.ServicoId;
         agendamentoExiste.PetId = agendamento.PetId;
+        agendamentoExiste.status = agendamento.status;
         await _context.SaveChangesAsync();
         return agendamentoExiste;
     }
