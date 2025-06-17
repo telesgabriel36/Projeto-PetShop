@@ -41,8 +41,9 @@
                         <td>@pagamento.Agendamento?.Servico?.Nome</td>
                         <td>@pagamento.Agendamento?.status</td>
                         <td>
-                            <a asp-action="Details" asp-route-id="@pagamento.Id" class="btn btn-info btn-sm">Detalhes</a>
+                            <a asp-action="Edit" asp-route-id="@pagamento.Id" class="btn btn-warning btn-sm">Editar</a>
                             <a asp-action="Delete" asp-route-id="@pagamento.Id" class="btn btn-danger btn-sm">Excluir</a>
+                            <a asp-action="Details" asp-route-id="@pagamento.Id" class="btn btn-info btn-sm">Detalhes</a>
                         </td>
                     </tr>
                 }

@@ -21,9 +21,4 @@ public class Agendamento
 
     [Required(ErrorMessage = "O status do agendamento é obrigatório.")]
     public StatusAgendamento status { get; set; }
-
-    public static implicit operator Agendamento(ServiceResult<Agendamento?> v)
-    {
-        throw new NotImplementedException();
-    }
 }

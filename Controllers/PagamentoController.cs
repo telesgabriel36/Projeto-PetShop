@@ -38,6 +38,7 @@ namespace Projeto_PetShop.Controllers
                 Agendamento = agendamentoResult.Data,
                 Pagamento = new Pagamento { AgendamentoId = agendamentoId }
             };
+            agendamentoResult.Data.status = Enums.Agendamento.StatusAgendamento.Pago;
             return View(viewModel);
         }
 
@@ -60,43 +61,6 @@ namespace Projeto_PetShop.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Edit(int id)
-        {
-            var resultado = await _pagamentoService.GetByIdAsync(id);
-            if (resultado.Data == null)
-            {
-                return NotFound();
-            }
-
-
-            var viewModel = new PagamentoCreateViewModel
-            {
-                Pagamento = resultado.Data,
-                Agendamento = await _agendamentoService.GetByIdAsync(resultado.Data.AgendamentoId)
-            };
-
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(PagamentoCreateViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var resultado = await _pagamentoService.UpdateAsync(model.Pagamento);
-            if (!resultado.Success)
-            {
-                ViewBag.ErrorMessage = resultado.Message;
-                return View(model);
-            }
-
-            TempData["MensagemSucesso"] = resultado.Message;
-            return RedirectToAction("Index");
-        }
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)

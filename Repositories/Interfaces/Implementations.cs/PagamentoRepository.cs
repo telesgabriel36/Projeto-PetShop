@@ -24,15 +24,21 @@ public class PagamentoRepository : IPagamentoRepository
     public async Task<Pagamento?> GetByIdAsync(int id)
     {
         return await _context.Pagamentos
-            .Include(p => p.Agendamento)
-            .FirstOrDefaultAsync(p => p.Id == id);
+       .Include(p => p.Agendamento)
+           .ThenInclude(a => a.Pet)
+       .Include(p => p.Agendamento)
+           .ThenInclude(a => a.Servico)
+       .FirstOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task<IEnumerable<Pagamento>> GetAllAsync()
     {
         return await _context.Pagamentos
-            .Include(p => p.Agendamento)
-            .ToListAsync();
+    .Include(p => p.Agendamento)
+        .ThenInclude(a => a.Pet)
+    .Include(p => p.Agendamento)
+        .ThenInclude(a => a.Servico)
+    .ToListAsync();
     }
 
     public async Task<Pagamento> UpdateAsync(Pagamento pagamento)

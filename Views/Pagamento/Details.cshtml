@@ -1,0 +1,50 @@
+@model Projeto_PetShop.Models.Pagamento
+
+@{
+    ViewData["Title"] = "Detalhes do Pagamento";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg rounded p-4">
+        <h2 class="text-center mb-4 text-success">Detalhes do Pagamento</h2>
+
+        <dl class="row">
+            <dt class="col-sm-3 text-end">Data do Pagamento:</dt>
+            <dd class="col-sm-9">@Model.DataPagamento.ToString("dd/MM/yyyy HH:mm")</dd>
+
+            <dt class="col-sm-3 text-end">Valor:</dt>
+            <dd class="col-sm-9">R$ @Model.Valor.ToString("F2")</dd>
+
+            <dt class="col-sm-3 text-end">Forma de Pagamento:</dt>
+            <dd class="col-sm-9">@Model.MetodoPagamento</dd>
+
+            <dt class="col-sm-3 text-end">Pet:</dt>
+            <dd class="col-sm-9">
+                <a asp-controller="Pet" asp-action="Details" asp-route-id="@Model.Agendamento?.PetId">
+                    @Model.Agendamento?.Pet?.Nome
+                </a>
+            </dd>
+
+            <dt class="col-sm-3 text-end">Serviço:</dt>
+            <dd class="col-sm-9">@Model.Agendamento?.Servico?.Nome</dd>
+
+            <dt class="col-sm-3 text-end">Status do Agendamento:</dt>
+            <dd class="col-sm-9">@Model.Agendamento?.status</dd>
+
+            <dt class="col-sm-3 text-end">Data do Agendamento:</dt>
+            <dd class="col-sm-9">@Model.Agendamento?.DataHoraAgendamento.ToString("dd/MM/yyyy HH:mm")</dd>
+
+            <dt class="col-sm-3 text-end">Data do Atendimento:</dt>
+            <dd class="col-sm-9">
+                @(Model.Agendamento?.DataHoraAtendimento != DateTime.MinValue 
+                    ? Model.Agendamento?.DataHoraAtendimento.ToString("dd/MM/yyyy HH:mm") 
+                    : "Ainda não realizado")
+            </dd>
+        </dl>
+
+        <div class="text-success mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-sm me-2">Editar</a>
+            <a asp-action="Index" class="btn btn-secondary btn-sm">Voltar</a>
+        </div>
+    </div>
+</div>
