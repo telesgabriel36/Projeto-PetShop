@@ -21,9 +21,37 @@ O objetivo da aplicação é auxiliar na gestão interna de um Pet Shop, permiti
 - Cadastro, visualização, edição e remoção de **Agendamentos** 
 - Cadastro, visualização, edição e remoção de **Pagamentos**
 
-## Capturas de Tela
+## Capturas de Telas
 
-![Tela Inicial]()
+### Tela Inicial do Sistema/ Home
+
+Visual simples, limpo e intuitívo para o usuário.
+
+![Tela Inicial](/Docs/Tela-Inicial-Sistema.png)
+
+### Tela de listagem de Tutores
+
+Nessa tela é possível visualizar, editar e remover um determinado tutor.
+
+![Tela de listagem de Tutores](/Docs/Tela-Tutores.png)
+
+### Tela de Cadastro de Pet
+
+Nessa tela é possível inserir dados de um Pet e associá-lo ao seu Tutor.
+
+![Tela de Cadastro de Pet](/Docs/Tela-Cadastrar-Pet.png)
+
+### Tela de Agendamento
+
+Na criação do agendamento é possível associar um Pet e um determinado serviço.
+
+![Tela de Agendamento](/Docs/Tela-Agendamento.png)
+
+### Tela de Deletar Pagamento
+
+Possibilita deletar um pagamento ou cancelar a operação
+
+![Tela de Deletar Agendamento](/Docs/Tela-Deletar-Pagamento.png)
 
 ## Como rodar
 
