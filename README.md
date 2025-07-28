@@ -1,6 +1,6 @@
 #  PetCare - Sistema de Gestão para PetShop
 
-
+[![GitHub License](https://img.shields.io/github/license/telesgabriel36/Projeto-PetShop)](./LICENSE)
 
 ## Sobre o Projeto
 
