@@ -1,5 +1,7 @@
 #  PetCare - Sistema de Gestão para PetShop
 
+
+
 ## Sobre o Projeto
 
 Este sistema foi desenvolvido durante o 5º semestre do curso de Análise e Desenvolvimento de Sistemas, como parte da disciplina de Desenvolvimento Web II.
@@ -53,11 +55,33 @@ Possibilita deletar um pagamento ou cancelar a operação
 
 ![Tela de Deletar Agendamento](/Docs/Tela-Deletar-Pagamento.png)
 
-## Como rodar
+## Pré-Requisitos
 
+- [.NET SDK 8.0 ou superior](https://dotnet.microsoft.com/en-us/download)
+- [Visual Studio 2022 ou superior](https://visualstudio.microsoft.com/)
+- Git (para clonar o repositório)
+
+## Como rodar o projeto
+
+1 - Clonar o Repositório
 ```bash
-git clone https://github.com/gabrielteles/petshop.git
-cd petshop
+git clone https://github.com/telesgabriel36/Projeto-PetShop.git
+```
+2 - Acessar o diretório do projeto
+```bash
+cd Projeto-PetShop
+```
+3 - Restaurar pacotes
+```bash
 dotnet restore
+```
+4 - Rodar
+```bash
 dotnet run
 ```
+
+# Autor
+
+Gabriel Vieira Teles
+
+[Linkedin](https://www.linkedin.com/in/gabriel-vieira-teles-8755142a0/)
